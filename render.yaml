@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: nexthire-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000          # Render assigns this automatically; keep it here as fallback
+      - key: MONGODB_URL
+        sync: false           # Set in Render dashboard → Environment
+      - key: JWT_SECRET
+        sync: false
+      - key: CLIENT_URL
+        sync: false           # Comma-separated: https://nexthire.vercel.app,https://your-preview.vercel.app
+      - key: SMTP_MAIL
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: SMTP_PORT
+        value: 465
+      - key: IMAGEKIT_PUBLIC_KEY
+        sync: false
+      - key: IMAGEKIT_PRIVATE_KEY
+        sync: false
+      - key: IMAGEKIT_URL_ENDPOINT
+        sync: false
+    healthCheckPath: /api/health
