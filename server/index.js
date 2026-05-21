@@ -19,7 +19,6 @@ const port = process.env.PORT || 8000;
 
 connectDB();
 
-// Parse comma-separated CLIENT_URL for multiple origins (e.g. Vercel preview + production URLs)
 const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:3000')
   .split(',')
   .map(o => o.trim())
@@ -27,9 +26,9 @@ const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:3000')
 
 const corsOptions = {
   origin: (origin, callback) => {
-    // Allow requests with no origin (mobile apps, curl, server-to-server)
+    
     if (!origin) return callback(null, true);
-    // Allow any Vercel deployment subdomain for this project
+  
     if (
       allowedOrigins.includes(origin) ||
       /^https:\/\/nexthire(-[a-z0-9]+)?\.vercel\.app$/.test(origin) ||
