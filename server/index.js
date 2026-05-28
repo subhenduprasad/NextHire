@@ -7,6 +7,11 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
+import { setDefaultResultOrder } from 'dns';
+
+// ✅ Force IPv4 DNS globally — fixes ENETUNREACH on Render free tier
+// Render's network blocks IPv6; Gmail SMTP resolves to IPv6 by default
+setDefaultResultOrder('ipv4first');
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
