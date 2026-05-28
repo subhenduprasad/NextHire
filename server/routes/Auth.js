@@ -11,6 +11,8 @@ const otpLimiter = rateLimit({
     message: { success: false, error: 'Too many OTP requests from this IP, please try again after 5 minutes' },
     standardHeaders: true,
     legacyHeaders: false,
+    // Required when deployed behind a reverse proxy (e.g., Render, Nginx)
+    validate: { xForwardedForHeader: false },
 });
 
 // Public routes

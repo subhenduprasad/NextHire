@@ -17,6 +17,9 @@ const app = express();
 const httpServer = createServer(app);
 const port = process.env.PORT || 8000;
 
+// Trust Render/proxy reverse proxy (fixes express-rate-limit X-Forwarded-For error)
+app.set('trust proxy', 1);
+
 connectDB();
 
 const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:3000')
